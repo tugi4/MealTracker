@@ -5,38 +5,38 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const uploadImage = async (imageUri: string) => {
-    try {
-      const formData = new FormData();
-      formData.append('image', {
-        uri: imageUri,
-        name: 'meal.jpg',
-        type: 'image/jpeg', 
-      } as any);      
-  
-      console.log('⏳ Sende Bild an Backend:', imageUri);
-  
-      const response = await fetch(
-        'https://7b29-2001-871-24e-b027-e437-ba0e-a713-9bfd.ngrok-free.app/analyse',
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
-  
-      if (!response.ok) {
-        throw new Error(`❌ Serverantwort: ${response.status}`);
+  try {
+    const formData = new FormData();
+    formData.append('image', {
+      uri: imageUri,
+      name: 'meal.jpg',
+      type: 'image/jpeg',
+    } as any);
+
+    console.log('⏳ Sende Bild an Backend:', imageUri);
+
+    const response = await fetch(
+      'https://17cd-193-170-2-74.ngrok-free.app/analyse',
+      {
+        method: 'POST',
+        body: formData,
+        
       }
-  
-      const result = await response.json();
-      console.log('📊 Analyse-Ergebnis:', result);
-      return result;
-  
-    } catch (error) {
-      console.error('❌ Fehler beim Senden:', error);
-      return null;
+    );
+
+    if (!response.ok) {
+      throw new Error(`❌ Serverantwort: ${response.status}`);
     }
-  };
-  
+
+    const result = await response.json();
+    console.log('📊 Analyse-Ergebnis:', result);
+    return result;
+
+  } catch (error) {
+    console.error('❌ Fehler beim Senden:', error);
+    return null;
+  }
+};
 
 export default function AnalyseScreen() {
   const { image } = useLocalSearchParams();
@@ -55,7 +55,6 @@ export default function AnalyseScreen() {
       });
     }
   }, [image]);
-  
 
   return (
     <LinearGradient colors={['#E0F7FA', '#FFFDE7']} style={styles.container}>

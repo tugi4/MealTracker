@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, Pressable, Alert, Image } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import * as ImagePicker from 'expo-image-picker';
-import { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
+import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
+import { useState } from 'react';
+import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
   const [image, setImage] = useState<string | null>(null);
@@ -99,23 +99,22 @@ export default function HomeScreen() {
         </View>
 
         {image && (
-  <View style={styles.previewContainer}>
-    <Image
-      source={{ uri: image }}
-      style={styles.previewImage}
-    />
-    <View style={styles.iconRow}>
-      <Pressable onPress={() => showPickerOptions('Bild erneut wählen')}>
-        <Feather name="edit" size={28} color="#00796B" />
-      </Pressable>
-      <Pressable onPress={() => router.push('/Analyse')}>
-  <Feather name="check" size={28} color="#00796B" />
-</Pressable>
-
-    </View>
-  </View>
-)}
-
+          <View style={styles.previewContainer}>
+            <Image source={{ uri: image }} style={styles.previewImage} />
+            <View style={styles.iconRow}>
+              <Pressable onPress={() => showPickerOptions('Bild erneut wählen')}>
+                <Feather name="edit" size={28} color="#00796B" />
+              </Pressable>
+              <Pressable
+                onPress={() =>
+                  router.push({ pathname: '/Analyse', params: { image } })
+                }
+              >
+                <Feather name="check" size={28} color="#00796B" />
+              </Pressable>
+            </View>
+          </View>
+        )}
       </View>
     </LinearGradient>
   );
