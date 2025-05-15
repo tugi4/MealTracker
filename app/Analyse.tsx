@@ -1,8 +1,8 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, ActivityIndicator } from 'react-native';
-import { useObjectDetection } from './ObjectDetector'; 
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useObjectDetection } from './ObjectDetector';
 
 const uploadImage = async (imageUri: string, objectPredictions: string[]) => {
   try {
@@ -19,7 +19,7 @@ const uploadImage = async (imageUri: string, objectPredictions: string[]) => {
     console.log('🧠 Mit Objekten:', objectPredictions);
 
     const response = await fetch(
-      'https://b9d1-2001-871-24e-b027-d087-e223-aee0-4204.ngrok-free.app/analyse',
+      'https://4be4-2001-871-24e-b027-c16c-7830-801-d96c.ngrok-free.app/analyse',
       {
         method: 'POST',
         body: formData,
